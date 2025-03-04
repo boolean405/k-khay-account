@@ -8,6 +8,7 @@ const UserSchema = new Schema(
     email: { type: String, require: true, unique: true },
     phone: { type: String, require: true, unique: true },
     password: { type: String, require: true },
+    services: { type: [String], default: ["K Khay Account"] },
     picture: {
       type: String,
       default:
@@ -24,7 +25,9 @@ UserSchema.pre("save", function (next) {
   this.name = this.name.trim();
   if (!this.username) {
     const randomNumber = Math.floor(Math.random() * 1000);
-    this.username = `${this.name.replace(/\s+/g, '').trim()}${randomNumber}`.toLowerCase();
+    this.username = `${this.name
+      .replace(/\s+/g, "")
+      .trim()}${randomNumber}`.toLowerCase();
   }
   next();
 });
