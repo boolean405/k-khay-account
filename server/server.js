@@ -19,15 +19,15 @@ app.use(express.json());
 mongoose
   .connect(dbUri)
   .then(() => console.log("=> Success, connected to App database"))
-  .then(() => {
-    redisClient.connect().then(() => {
-      console.log("=> Success, redis server connected");
-      // Run server
-      app.listen(port, () => {
-        console.log(`=> Server is running on port ${port}`);
-      });
-    });
-  })
+  // .then(() => {
+  //   redisClient.connect().then(() => {
+  //     console.log("=> Success, redis server connected");
+  //     // Run server
+  //     app.listen(port, () => {
+  //       console.log(`=> Server is running on port ${port}`);
+  //     });
+  //   });
+  // })
   .catch((err) =>
     console.error("=> Fail, could not connect to Database!", err.message)
   );
