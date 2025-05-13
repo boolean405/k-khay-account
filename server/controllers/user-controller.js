@@ -1,5 +1,5 @@
 import UserDB from "../models/user-model.js";
-import { Redis } from "../utils/redis.js";
+// import { Redis } from "../utils/redis.js";
 import { resMsg, Encoder, Token } from "../utils/core.js";
 
 const paginateUser = async (req, res, next) => {
@@ -92,7 +92,7 @@ const loginUser = async (req, res, next) => {
 
     let user = dbUser.toObject();
     delete user.password;
-    await Redis.set(user._id.toString(), user);
+    // await Redis.set(user._id.toString(), user);
 
     user.token = Token.makeToken({ id: user._id.toString() });
     resMsg(res, "Login success", user);
@@ -164,9 +164,9 @@ const deleteUser = async (req, res, next) => {
       error.status = 404;
       return next(error);
     }
-    if (await Redis.get(userId)) {
-      await Redis.delete(userId);
-    }
+    // if (await Redis.get(userId)) {
+    //   await Redis.delete(userId);
+    // }
     await UserDB.findByIdAndDelete(userId);
     resMsg(res, `'${user.name}' user deleted`);
   } catch (err) {

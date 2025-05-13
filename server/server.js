@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import { errorHandler, notFound } from "./middleware/error-middleware.js";
-import { redisClient } from "./utils/redis.js";
+// import { redisClient } from "./utils/redis.js";
 
 import userRoute from "./routes/user-route.js";
 
